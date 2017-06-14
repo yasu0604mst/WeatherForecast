@@ -81,6 +81,23 @@ public class WeatherForecast {
                 max = new Temp(null);
             }
         }
+        @Override
+        public String toString() {
+            StringBuffer sb = new StringBuffer(); // 最低 気温 / 最高 気温
+            if (min. celsius != null) {
+                sb. append( min. celsius);
+            } else {
+                sb. append(" - ");
+            }
+            sb. append("℃ / ");
+            if (max. celsius != null) {
+                sb. append( max. celsius);
+            } else {
+                sb. append(" - ");
+            }
+            sb. append("℃");
+            return sb. toString();
+        }
     }
     public class Temp{
         public final String celsius;
