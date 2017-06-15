@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast;
+package com.fukuoka.beatc.weatherforecast.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
 import android.os.Handler;
+
+import com.fukuoka.beatc.weatherforecast.R;
+import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
+import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
+
 import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity
@@ -137,17 +142,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Toast.makeText(MainActivity.this, "camera", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_gallery) {
-
+            Toast.makeText(MainActivity.this, "nav_gallery", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_slideshow) {
-
+            Toast.makeText(MainActivity.this, "nav_slideshow", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_manage) {
-
+            Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_share) {
-
+            Toast.makeText(MainActivity.this, "nav_share", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
-
+            Toast.makeText(MainActivity.this, "nav_send", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast;
+package com.fukuoka.beatc.weatherforecast.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,24 +7,26 @@ import java.io.IOException;
 import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Context;
-import android.os.AsyncTask;
+
+import com.fukuoka.beatc.weatherforecast.R;
+import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
+import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
+import com.fukuoka.beatc.weatherforecast.services.GetWeatherForecastApiTask;
 
 import org.json.JSONException;
 
-import java.io.IOException;
 /**
  * Created by ted on 2017/05/30.
  */
 
 public class MyActivity extends Activity {
     private TextView textView;
-    private class GetWeatherForcastTask extends GetWeatherForecastApiTask {
+    public class GetWeatherForcastTask extends GetWeatherForecastApiTask {
         public GetWeatherForcastTask (Context context) {
             super(context);
         }
         @Override
-        protected void onPostExecute(WeatherForecast data) {
+        public void onPostExecute(WeatherForecast data) {
             super.onPostExecute(data);
             if(data != null) {
                 System.out.println("onPostExecute():data setText");

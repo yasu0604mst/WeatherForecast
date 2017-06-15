@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast;
+package com.fukuoka.beatc.weatherforecast.models.apis;
 
 /**
  * Created by ted on 2017/05/30.

@@ -1,27 +1,20 @@
-package com.fukuoka.beatc.weatherforecast;
+package com.fukuoka.beatc.weatherforecast.models.apis;
 
 /**
  * Created by ted on 2017/05/22.
  */
 
 import android.content.Context;
+
 import java.net.HttpURLConnection;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.Object;
 import java.net.URL;
 import java.io.InputStream;
-import java.io.FilterInputStream;
 import java.io.BufferedInputStream;
-import java.io.FilterInputStream.*;
 import java.io.ByteArrayOutputStream;
-
-import java.io.IOException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.lang.Object;
 
 public class WeatherApi {
     private static final String USER_AGENT ="WeatherForcasts Sample";
@@ -29,7 +22,7 @@ public class WeatherApi {
 
     //public static String getWeather(Context context, String pointId) throws IOException {
 
-    public static WeatherForecast getWeather(Context context,String pointId) throws IOException, JSONException{
+    public static WeatherForecast getWeather(Context context, String pointId) throws IOException, JSONException{
 
         URL url = new URL(URL + pointId);
         HttpURLConnection urlConnection = (java.net.HttpURLConnection) url.openConnection();
