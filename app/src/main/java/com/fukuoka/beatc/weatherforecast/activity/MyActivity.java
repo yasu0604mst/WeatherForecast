@@ -12,6 +12,7 @@ import com.fukuoka.beatc.weatherforecast.R;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
 import com.fukuoka.beatc.weatherforecast.services.GetWeatherForecastApiTask;
+import com.fukuoka.beatc.weatherforecast.utils.Util;
 
 import org.json.JSONException;
 
@@ -29,7 +30,7 @@ public class MyActivity extends Activity {
         public void onPostExecute(WeatherForecast data) {
             super.onPostExecute(data);
             if(data != null) {
-                System.out.println("onPostExecute():data setText");
+                Util.Log(Util.LogType.DEBUG, "### onPostExecute() ###");
                 //textView.setText(data);
                 textView.setText(data.location.area + ""+ data.location.prefecture + " " + data.location.city);
                 for(WeatherForecast.Forecast forecast : data.forecastList) {

@@ -16,6 +16,10 @@ import java.io.ByteArrayOutputStream;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.fukuoka.beatc.weatherforecast.consts.*;
+import com.fukuoka.beatc.weatherforecast.utils.Util;
+import com.fukuoka.beatc.weatherforecast.utils.Util.*;
+
 public class WeatherApi {
     private static final String USER_AGENT ="WeatherForcasts Sample";
     private static final String URL = "http://weather.livedoor.com/forecast/webservice/json/v1?city=";
@@ -27,22 +31,23 @@ public class WeatherApi {
         URL url = new URL(URL + pointId);
         HttpURLConnection urlConnection = (java.net.HttpURLConnection) url.openConnection();
         String ret = "";
-        System.out.println("URL:" +  URL + pointId);
-        System.out.println("getWeather() START");
+        Util.Log(Util.LogType.DEBUG, "URL:" +  URL + pointId);
+        Util.Log(Util.LogType.DEBUG, "### getWeather() START");
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             ret = readStream(in);
-            System.out.println("Res Accept:");
-            System.out.println(ret.toString());
+            Util.Log(Util.LogType.DEBUG, "### Res Accept:");
+            Util.Log(Util.LogType.DEBUG, ret.toString());
+            Util.Log(Util.LogType.DEBUG, "### END ###");
         } finally {
             urlConnection.disconnect();
         }
-        System.out.println("getWeather() END");
+        Util.Log(Util.LogType.DEBUG, "### getWeather() END");
         return new WeatherForecast(new JSONObject(ret.toString()));
     }
 
     private static String readStream(InputStream is) {
-        System.out.println("readStream() SART");
+        Util.Log(Util.LogType.DEBUG, "### readStream() SART");
         ByteArrayOutputStream bo = new ByteArrayOutputStream();
         try {
             int i = is.read();
@@ -53,7 +58,7 @@ public class WeatherApi {
         } catch (IOException e) {
             return "";
         }
-        System.out.println("readStream() END");
+        Util.Log(Util.LogType.DEBUG, "### readStream() END");
         return bo.toString();
     }
 }

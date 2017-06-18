@@ -10,10 +10,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fukuoka.beatc.weatherforecast.utils.Util;
+import com.fukuoka.beatc.weatherforecast.utils.Util.*;
+
 public class WeatherForecast {
     public final Location location;
     public final List<Forecast> forecastList = new ArrayList<Forecast>();
     public WeatherForecast(JSONObject jsonObject)throws JSONException{
+        //Util.Log(Util.LogType.DEBUG, "### getWeather() START");
+        Util.Log(Util.LogType.DEBUG, "### WeatherForecast() START ###");
         JSONObject locationObject = jsonObject.getJSONObject("location");
         location = new Location(locationObject);
         JSONArray forecastArray = jsonObject.getJSONArray("forecasts");
@@ -23,15 +28,18 @@ public class WeatherForecast {
             Forecast forecast = new Forecast(forecastJson);
             forecastList.add(forecast);
         }
+        Util.Log(Util.LogType.DEBUG, "### WeatherForecast() END ###");
     }
     public class Location {
         public final String area;
         public final String prefecture;
         public final String city;
         public Location(JSONObject jsonObject) throws JSONException{
+            Util.Log(Util.LogType.DEBUG, "### Location() START ###");
             area = jsonObject.getString("area");
             prefecture = jsonObject.getString("prefecture");
             city = jsonObject.getString("city");
+            Util.Log(Util.LogType.DEBUG, "### Location() END ###");
         }
     }
     public class Forecast {
@@ -41,11 +49,13 @@ public class WeatherForecast {
         public final Image image;
         public final Temperature temperature;
         public Forecast(JSONObject jsonObject) throws JSONException{
+            Util.Log(Util.LogType.DEBUG, "### Forecast() START ###");
             date = jsonObject.getString("date");
             dataLabel = jsonObject.getString("dateLabel");
             telop = jsonObject.getString("telop");
             image = new Image(jsonObject.getJSONObject("image"));
             temperature = new Temperature(jsonObject.getJSONObject("temperature"));
+            Util.Log(Util.LogType.DEBUG, "### Forecast() END ###");
         }
     }
     public class Image {
@@ -55,6 +65,7 @@ public class WeatherForecast {
         public final int width;
         public final int height;
         public Image(JSONObject jsonObject) throws JSONException {
+            Util.Log(Util.LogType.DEBUG, "### Image() START ###");
             title = jsonObject.getString("title");
             if(jsonObject.has("link")) {
                 link = jsonObject.getString("link");
@@ -64,12 +75,14 @@ public class WeatherForecast {
             url = jsonObject.getString("url");
             width = jsonObject.getInt("width");
             height = jsonObject.getInt("height");
+            Util.Log(Util.LogType.DEBUG, "### Image() END ###");
         }
     }
     public class Temperature {
         public final Temp min;
         public final Temp max;
         public Temperature(JSONObject jsonObject)throws JSONException {
+            Util.Log(Util.LogType.DEBUG, "### Temperature() START ###");
             if(!jsonObject.isNull("min")) {
                 min = new Temp(jsonObject.getJSONObject("min"));
             }else {
@@ -80,6 +93,7 @@ public class WeatherForecast {
             }else{
                 max = new Temp(null);
             }
+            Util.Log(Util.LogType.DEBUG, "### Temperature() END ###");
         }
         @Override
         public String toString() {

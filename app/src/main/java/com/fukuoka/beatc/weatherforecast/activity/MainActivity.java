@@ -20,6 +20,7 @@ import android.os.Handler;
 import com.fukuoka.beatc.weatherforecast.R;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
+import com.fukuoka.beatc.weatherforecast.utils.Util;
 
 import org.json.JSONException;
 
@@ -38,17 +39,18 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                FloatingActionButtonEvent(view);
             }
         });
 
+        //ドロアのトグル
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        // ナビゲーションの設定
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -59,24 +61,26 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 try{
-                    System.out.println("Obtain Weather START");
+                    Util.Log(Util.LogType.DEBUG, "### Obtain Weather START ###");
                     final WeatherForecast data = WeatherApi.getWeather(MainActivity.this,"400040");
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
+                            Util.Log(Util.LogType.DEBUG, "### RUN() ###");
                             //textView.setText(data.location.area);
                             textView.setText(data.location.area + ""+ data.location.prefecture + " " + data.location.city);
+                            Util.Log(Util.LogType.DEBUG, "### setText() ###");
                             for(WeatherForecast.Forecast forecast : data.forecastList) {
                                 textView.append("\n");
                                 textView.append(forecast.dataLabel + " " + forecast.telop);
                             }
                         }
                     });
-                    System.out.println("Obtain Weather END");
+                    Util.Log(Util.LogType.DEBUG, "### Obtain Weather END ###");
 
                 }catch(final IOException e) {
 
-                    System.out.println("IOException START");
+                    Util.Log(Util.LogType.DEBUG, "### IOException:" + e.toString());
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this,"IOException is occurred",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,"JSONException is occurred",Toast.LENGTH_SHORT).show();
                         }
                     });
                     System.out.println("JSONException END");
@@ -99,8 +103,6 @@ public class MainActivity extends AppCompatActivity
             }
         };
         thread.start();
-
-
     }
 
     @Override
@@ -158,5 +160,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void FloatingActionButtonEvent(View view){
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 }

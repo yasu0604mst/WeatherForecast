@@ -12,11 +12,14 @@ import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
 import java.io.IOException;
 import org.json.JSONException;
 
+import com.fukuoka.beatc.weatherforecast.utils.Util;
+import com.fukuoka.beatc.weatherforecast.utils.Util.*;
+
 public class GetWeatherForecastApiTask extends AsyncTask<String, Void, WeatherForecast> {
     private final Context context;
     public Exception exception;
     public GetWeatherForecastApiTask(Context context){
-        System.out.println("GetWeatherForecastApiTask() Start");
+        Util.Log(Util.LogType.DEBUG, "### GetWeatherForecastApiTask() START ###");
         this.context = context;
     }
     @Override
