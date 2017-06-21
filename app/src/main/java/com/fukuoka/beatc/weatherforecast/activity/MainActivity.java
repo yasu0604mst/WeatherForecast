@@ -1,5 +1,6 @@
 package com.fukuoka.beatc.weatherforecast.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import android.os.Handler;
 
 import com.fukuoka.beatc.weatherforecast.R;
+import com.fukuoka.beatc.weatherforecast.models.TransActivity;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
 import com.fukuoka.beatc.weatherforecast.utils.Util;
@@ -151,10 +153,16 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "nav_slideshow", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_manage) {
             Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_SHORT).show();
+            //TransTabActivity();
+            TransActivity.TransBasicActivity(this);
         } else if (id == R.id.nav_share) {
             Toast.makeText(MainActivity.this, "nav_share", Toast.LENGTH_SHORT).show();
+            //TransTabActivity();
+            TransActivity.TransBasicActivity(this);
         } else if (id == R.id.nav_send) {
             Toast.makeText(MainActivity.this, "nav_send", Toast.LENGTH_SHORT).show();
+            //TransBasicActivity();
+            TransActivity.TransBasicActivity(this);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -166,4 +174,20 @@ public class MainActivity extends AppCompatActivity
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+//    private  void TransTabActivity(){
+//        Intent intent = new Intent(this, com.fukuoka.beatc.weatherforecast.activity.TabbedActivity.class);
+//        //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
+//        intent.putExtra("test", "TEST STRING");
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
+//        finish();
+//    }
+//    private  void TransBasicActivity(){
+//        Intent intent = new Intent(this, com.fukuoka.beatc.weatherforecast.activity.BasicActivity.class);
+//        //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
+//        intent.putExtra("test", "TEST STRING");
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(intent);
+//        finish();
+//    }
 }

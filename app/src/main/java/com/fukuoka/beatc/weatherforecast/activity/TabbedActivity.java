@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fukuoka.beatc.weatherforecast.R;
 
@@ -61,7 +62,6 @@ public class TabbedActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
 
@@ -149,10 +149,13 @@ public class TabbedActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
+                    Toast.makeText(TabbedActivity.this, "case1", Toast.LENGTH_SHORT).show();
                     return "SECTION 1";
                 case 1:
+                    Toast.makeText(TabbedActivity.this, "case2", Toast.LENGTH_SHORT).show();
                     return "SECTION 2";
                 case 2:
+                    Toast.makeText(TabbedActivity.this, "case3", Toast.LENGTH_SHORT).show();
                     return "SECTION 3";
             }
             return null;
