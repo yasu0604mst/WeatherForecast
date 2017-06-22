@@ -1,6 +1,5 @@
 package com.fukuoka.beatc.weatherforecast.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +18,7 @@ import java.io.IOException;
 import android.os.Handler;
 
 import com.fukuoka.beatc.weatherforecast.R;
-import com.fukuoka.beatc.weatherforecast.models.TransActivity;
+import com.fukuoka.beatc.weatherforecast.models.NavigationManager;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
 import com.fukuoka.beatc.weatherforecast.utils.Util;
@@ -34,9 +33,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //アクションバーの設定
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //フローティングボタンの設定
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        //天気予報の表示
         textView = (TextView) findViewById(R.id.tv_content);
         handler = new Handler();
         Thread thread = new Thread() {
@@ -142,28 +144,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            Toast.makeText(MainActivity.this, "camera", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_gallery) {
-            Toast.makeText(MainActivity.this, "nav_gallery", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_slideshow) {
-            Toast.makeText(MainActivity.this, "nav_slideshow", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_manage) {
-            Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_SHORT).show();
-            //TransTabActivity();
-            TransActivity.TransBasicActivity(this);
-        } else if (id == R.id.nav_share) {
-            Toast.makeText(MainActivity.this, "nav_share", Toast.LENGTH_SHORT).show();
-            //TransTabActivity();
-            TransActivity.TransBasicActivity(this);
-        } else if (id == R.id.nav_send) {
-            Toast.makeText(MainActivity.this, "nav_send", Toast.LENGTH_SHORT).show();
-            //TransBasicActivity();
-            TransActivity.TransBasicActivity(this);
-        }
+        NavigationManager.onNavigationItemSelected(this, item);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -174,20 +155,4 @@ public class MainActivity extends AppCompatActivity
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
-//    private  void TransTabActivity(){
-//        Intent intent = new Intent(this, com.fukuoka.beatc.weatherforecast.activity.TabbedActivity.class);
-//        //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
-//        intent.putExtra("test", "TEST STRING");
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(intent);
-//        finish();
-//    }
-//    private  void TransBasicActivity(){
-//        Intent intent = new Intent(this, com.fukuoka.beatc.weatherforecast.activity.BasicActivity.class);
-//        //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
-//        intent.putExtra("test", "TEST STRING");
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(intent);
-//        finish();
-//    }
 }
