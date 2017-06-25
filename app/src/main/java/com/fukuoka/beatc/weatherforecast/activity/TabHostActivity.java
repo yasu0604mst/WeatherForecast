@@ -2,6 +2,7 @@ package com.fukuoka.beatc.weatherforecast.activity;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -21,6 +22,9 @@ import android.view.View;
 import com.fukuoka.beatc.weatherforecast.R;
 import com.fukuoka.beatc.weatherforecast.fragment.PageFragment;
 import com.fukuoka.beatc.weatherforecast.models.NavigationManager;
+import com.fukuoka.beatc.weatherforecast.utils.Util;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 public class TabHostActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,
         PageFragment.OnFragmentInteractionListener,NavigationView.OnNavigationItemSelectedListener  {
@@ -40,6 +44,26 @@ public class TabHostActivity extends AppCompatActivity implements ViewPager.OnPa
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        //ボタンバーの設定
+        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                if (tabId == R.id.tab_favorites) {
+                    Util.Log(Util.LogType.DEBUG, "### tab_favorites ###");
+                }
+                if (tabId == R.id.tab_category) {
+                    Util.Log(Util.LogType.DEBUG, "### tab_category ###");
+                }
+                if (tabId == R.id.tab_add) {
+                    Util.Log(Util.LogType.DEBUG, "### tab_add ###");
+                }
+            }
+        });
+
+        //ListView
+
 
         // ナビゲーションの設定
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

@@ -1,0 +1,19 @@
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/ic_favolite"
+        title="Favorites"
+        barColorWhenSelected="#5D4037" />
+
+    <tab
+        id="@+id/tab_category"
+        icon="@drawable/ic_category"
+        title="Category"
+        barColorWhenSelected="#5D4037" />
+    <tab
+        id="@+id/tab_add"
+        icon="@drawable/ic_add"
+        title="Add"
+        barColorWhenSelected="#5D4037" />
+</tabs>
+
