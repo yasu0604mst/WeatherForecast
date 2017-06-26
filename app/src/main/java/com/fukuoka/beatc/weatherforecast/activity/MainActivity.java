@@ -2,7 +2,6 @@ package com.fukuoka.beatc.weatherforecast.activity;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +22,7 @@ import java.util.ArrayList;
 import android.os.Handler;
 
 import com.fukuoka.beatc.weatherforecast.R;
-import com.fukuoka.beatc.weatherforecast.models.Food;
+import com.fukuoka.beatc.weatherforecast.models.Product;
 import com.fukuoka.beatc.weatherforecast.models.MyAdapter;
 import com.fukuoka.beatc.weatherforecast.models.NavigationManager;
 import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
@@ -32,7 +30,6 @@ import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
 import com.fukuoka.beatc.weatherforecast.utils.Util;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
-import com.roughike.bottombar.TabSelectionInterceptor;
 
 
 import org.json.JSONException;
@@ -95,23 +92,19 @@ public class MainActivity extends AppCompatActivity
 //        //adapter.add("added");
 //        lv.setAdapter(adapter);
 
-
         lv = (ListView) findViewById(R.id.listView1);
 
-        ArrayList<Food> list = new ArrayList<>();
+        ArrayList<Product> list = new ArrayList<>();
         MyAdapter myAdapter = new MyAdapter(MainActivity.this);
-        myAdapter.setFoodList(list);
+        myAdapter.setProductList(list);
         lv.setAdapter(myAdapter);
 
-        Food food = new Food();
-        food.setName("りんご");
-        food.setPrice(100);
-        list.add(food);
-
-        Food food2 = new Food();
-        food2.setName("ばなな");
-        food2.setPrice(200);
-        list.add(food2);
+        list.add(new Product("リンゴ","津軽産地の美味しいリンゴです",100,150));
+        list.add(new Product("ばなな","パナマ産のバナナです。すっきり美味しい",100,250));
+        list.add(new Product("イチゴ","福岡産のあまおう。美味しくてあまい",100,150));
+        list.add(new Product("みかん","愛媛産のミカンです",100,150));
+        list.add(new Product("メロン","夕張産の甘いメロンです。すっきり美味しい",100,150));
+        list.add(new Product("もも","岡山産の甘いももです。夏にぴったりの美味しい",100,150));
 
         myAdapter.notifyDataSetChanged();
 
@@ -152,6 +145,34 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getApplicationContext(), item + " long clicked",
                         Toast.LENGTH_LONG).show();
                 return false;
+            }
+        });
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(getApplicationContext(),  "Item clicked",
+                            Toast.LENGTH_LONG).show();
+            }
+        });
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),  "Item Long clicked",
+                        Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+        lv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(),  " ItemSelected",
+                        Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getApplicationContext(),  "Item nothing selected",
+                        Toast.LENGTH_LONG).show();
             }
         });
 
