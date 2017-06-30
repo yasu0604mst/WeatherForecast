@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.services;
+package com.fukuoka.beatc.weatherforecast.domain.usecase;
 
 /**
  * Created by ted on 2017/05/22.
@@ -6,14 +6,13 @@ package com.fukuoka.beatc.weatherforecast.services;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
-import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
+import com.fukuoka.beatc.weatherforecast.domain.models.WeatherApi;
+import com.fukuoka.beatc.weatherforecast.domain.models.WeatherForecast;
 
 import java.io.IOException;
 import org.json.JSONException;
 
-import com.fukuoka.beatc.weatherforecast.utils.Util;
-import com.fukuoka.beatc.weatherforecast.utils.Util.*;
+import com.fukuoka.beatc.weatherforecast.domain.utils.Util;
 
 public class GetWeatherForecastApiTask extends AsyncTask<String, Void, WeatherForecast> {
     private final Context context;

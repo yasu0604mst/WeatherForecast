@@ -1,20 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.activity;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.Handler;
-import java.io.IOException;
-import android.content.Context;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.fukuoka.beatc.weatherforecast.R;
-import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
-import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
-import com.fukuoka.beatc.weatherforecast.services.GetWeatherForecastApiTask;
-import com.fukuoka.beatc.weatherforecast.utils.Util;
-
-import org.json.JSONException;
+package com.fukuoka.beatc.weatherforecast.presentation.activity;
 
 /**
  * Created by ted on 2017/05/30.

@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.models;
+package com.fukuoka.beatc.weatherforecast.domain.models;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.fukuoka.beatc.weatherforecast.R;
-import com.fukuoka.beatc.weatherforecast.activity.MainActivity;
+import com.fukuoka.beatc.weatherforecast.presentation.activity.BasicActivity;
+import com.fukuoka.beatc.weatherforecast.presentation.activity.MainActivity;
+import com.fukuoka.beatc.weatherforecast.presentation.activity.TabHostActivity;
+import com.fukuoka.beatc.weatherforecast.presentation.activity.TabbedActivity;
 
 /**
  * Created by ted on 2017/06/21.
@@ -43,7 +46,7 @@ public class NavigationManager {
         }
     }
     private static void SelectedHome(AppCompatActivity activity){
-        Intent intent = new Intent(activity, com.fukuoka.beatc.weatherforecast.activity.MainActivity.class);
+        Intent intent = new Intent(activity, MainActivity.class);
         intent.putExtra("test", "TEST STRING");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
@@ -51,7 +54,7 @@ public class NavigationManager {
         activity.finish();
     }
     private static void SelectedCamera(AppCompatActivity activity){
-        Intent intent = new Intent(activity, com.fukuoka.beatc.weatherforecast.activity.BasicActivity.class);
+        Intent intent = new Intent(activity, BasicActivity.class);
         //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
         intent.putExtra("test", "TEST STRING");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -60,7 +63,7 @@ public class NavigationManager {
         activity.finish();
     }
     private static void SelectedGallery(AppCompatActivity activity){
-        Intent intent = new Intent(activity, com.fukuoka.beatc.weatherforecast.activity.BasicActivity.class);
+        Intent intent = new Intent(activity, BasicActivity.class);
         //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
         intent.putExtra("test", "TEST STRING");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -69,7 +72,7 @@ public class NavigationManager {
         activity.finish();
     }
     private static void SelectedSlideshow(AppCompatActivity activity){
-        Intent intent = new Intent(activity, com.fukuoka.beatc.weatherforecast.activity.TabHostActivity.class);
+        Intent intent = new Intent(activity, TabHostActivity.class);
         //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
         intent.putExtra("test", "TEST STRING");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -78,7 +81,7 @@ public class NavigationManager {
         activity.finish();
     }
     private static void SelectedManage(AppCompatActivity activity){
-        Intent intent = new Intent(activity, com.fukuoka.beatc.weatherforecast.activity.TabbedActivity.class);
+        Intent intent = new Intent(activity, TabbedActivity.class);
         //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
         intent.putExtra("test", "TEST STRING");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -87,7 +90,7 @@ public class NavigationManager {
         activity.finish();
     }
     private static void SelectedShare(AppCompatActivity activity){
-        Intent intent = new Intent(activity, com.fukuoka.beatc.weatherforecast.activity.TabbedActivity.class);
+        Intent intent = new Intent(activity, TabbedActivity.class);
         //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
         intent.putExtra("test", "TEST STRING");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -96,7 +99,7 @@ public class NavigationManager {
         activity.finish();
     }
     private static void SelectedSend(AppCompatActivity activity){
-        Intent intent = new Intent(activity, com.fukuoka.beatc.weatherforecast.activity.BasicActivity.class);
+        Intent intent = new Intent(activity, BasicActivity.class);
         //intent.setClassName("org.jpn.techbooster.demo.intent","org.jpn.techbooster.demo.intent.SubActivity");
         intent.putExtra("test", "TEST STRING");
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

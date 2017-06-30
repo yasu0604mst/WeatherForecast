@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.fragment;
+package com.fukuoka.beatc.weatherforecast.presentation.fragment;
 
 import android.content.Context;
 import android.net.Uri;

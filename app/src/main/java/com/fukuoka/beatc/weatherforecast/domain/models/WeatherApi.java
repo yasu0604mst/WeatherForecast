@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.models.apis;
+package com.fukuoka.beatc.weatherforecast.domain.models;
 
 /**
  * Created by ted on 2017/05/22.
@@ -16,9 +16,8 @@ import java.io.ByteArrayOutputStream;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.fukuoka.beatc.weatherforecast.consts.*;
-import com.fukuoka.beatc.weatherforecast.utils.Util;
-import com.fukuoka.beatc.weatherforecast.utils.Util.*;
+
+import com.fukuoka.beatc.weatherforecast.domain.utils.Util;
 
 public class WeatherApi {
     private static final String USER_AGENT ="WeatherForcasts Sample";

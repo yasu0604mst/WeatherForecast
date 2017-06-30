@@ -1,11 +1,9 @@
-package com.fukuoka.beatc.weatherforecast.activity;
+package com.fukuoka.beatc.weatherforecast.presentation.activity;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,12 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.fukuoka.beatc.weatherforecast.R;
-import com.fukuoka.beatc.weatherforecast.fragment.PageFragment;
-import com.fukuoka.beatc.weatherforecast.models.NavigationManager;
-import com.fukuoka.beatc.weatherforecast.utils.Util;
+import com.fukuoka.beatc.weatherforecast.presentation.fragment.PageFragment;
+import com.fukuoka.beatc.weatherforecast.domain.models.NavigationManager;
+import com.fukuoka.beatc.weatherforecast.domain.utils.Util;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 

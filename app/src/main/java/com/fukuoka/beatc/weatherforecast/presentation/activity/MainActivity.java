@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.activity;
+package com.fukuoka.beatc.weatherforecast.presentation.activity;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -17,17 +17,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import android.os.Handler;
 
 import com.fukuoka.beatc.weatherforecast.R;
-import com.fukuoka.beatc.weatherforecast.models.Product;
-import com.fukuoka.beatc.weatherforecast.models.MyAdapter;
-import com.fukuoka.beatc.weatherforecast.models.NavigationManager;
-import com.fukuoka.beatc.weatherforecast.models.apis.WeatherApi;
-import com.fukuoka.beatc.weatherforecast.models.apis.WeatherForecast;
-import com.fukuoka.beatc.weatherforecast.utils.Util;
+import com.fukuoka.beatc.weatherforecast.domain.models.ProductManager;
+import com.fukuoka.beatc.weatherforecast.domain.models.MyAdapter;
+import com.fukuoka.beatc.weatherforecast.domain.models.NavigationManager;
+import com.fukuoka.beatc.weatherforecast.domain.models.WeatherApi;
+import com.fukuoka.beatc.weatherforecast.domain.models.WeatherForecast;
+import com.fukuoka.beatc.weatherforecast.domain.utils.Util;
+import com.fukuoka.beatc.weatherforecast.presentation.presenter.MainPresenter;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -35,10 +35,15 @@ import com.roughike.bottombar.OnTabSelectListener;
 import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,IMainActivity {
     private TextView textView;
+    private TextView textView1;
+    private TextView textView2;
+    private TextView textView3;
     private Handler handler;
     ListView lv;
+    private MainPresenter mMainPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,32 +86,12 @@ public class MainActivity extends AppCompatActivity
             }
         });
         //ListViewの設定
-//        String[] members = { "mhidaka", "rongon_xp", "kacchi0516", "kobashinG",
-//                "seit", "kei_i_t", "furusin_oriver" };
-//
-//        lv = (ListView) findViewById(R.id.listView1);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                this,
-//                android.R.layout.simple_expandable_list_item_1,
-//                members);
-//        //adapter.add("added");
-//        lv.setAdapter(adapter);
-
         lv = (ListView) findViewById(R.id.listView1);
-
-        ArrayList<Product> list = new ArrayList<>();
         MyAdapter myAdapter = new MyAdapter(MainActivity.this);
-        myAdapter.setProductList(list);
+        myAdapter.setProductList((new ProductManager()).MakeProductList());
         lv.setAdapter(myAdapter);
-
-        list.add(new Product("リンゴ","津軽産地の美味しいリンゴです",100,150));
-        list.add(new Product("ばなな","パナマ産のバナナです。すっきり美味しい",100,250));
-        list.add(new Product("イチゴ","福岡産のあまおう。美味しくてあまい",100,150));
-        list.add(new Product("みかん","愛媛産のミカンです",100,150));
-        list.add(new Product("メロン","夕張産の甘いメロンです。すっきり美味しい",100,150));
-        list.add(new Product("もも","岡山産の甘いももです。夏にぴったりの美味しい",100,150));
-
         myAdapter.notifyDataSetChanged();
+
 
         //リスト項目がクリックされた時の処理
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -175,6 +160,12 @@ public class MainActivity extends AppCompatActivity
                         Toast.LENGTH_LONG).show();
             }
         });
+
+        //MainPresenterで値の設定
+        mMainPresenter = new MainPresenter();
+        mMainPresenter.setActivity(this);
+        mMainPresenter.setView();
+
 
         // ナビゲーションの設定
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -276,5 +267,21 @@ public class MainActivity extends AppCompatActivity
     private void FloatingActionButtonEvent(View view){
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    @Override
+    public void setNameView1(String name){
+        textView1 = (TextView) findViewById(R.id.tv_name1);
+        textView1.setText(name);
+    }
+    @Override
+    public void setNameView2(String name){
+        textView2 = (TextView) findViewById(R.id.tv_name2);
+        textView2.setText(name);
+    }
+    @Override
+    public void setNameView3(String name){
+        textView3 = (TextView) findViewById(R.id.tv_name3);
+        textView3.setText(name);
     }
 }

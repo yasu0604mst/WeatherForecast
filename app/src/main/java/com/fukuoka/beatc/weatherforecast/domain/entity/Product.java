@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.models;
+package com.fukuoka.beatc.weatherforecast.domain.entity;
 
 /**
  * Created by ted on 2017/06/25.

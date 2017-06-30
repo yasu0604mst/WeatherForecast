@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.models;
+package com.fukuoka.beatc.weatherforecast.domain.models;
 
 /**
  * Created by ted on 2017/06/25.
@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.fukuoka.beatc.weatherforecast.R;
+import com.fukuoka.beatc.weatherforecast.domain.entity.Product;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,6 @@
-package com.fukuoka.beatc.weatherforecast.utils;
-import com.fukuoka.beatc.weatherforecast.consts.*;
+package com.fukuoka.beatc.weatherforecast.domain.utils;
+import com.fukuoka.beatc.weatherforecast.domain.consts.Const;
+
 import android.util.Log;
 /**
  * Created by ted on 2017/06/18.

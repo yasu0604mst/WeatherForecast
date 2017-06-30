@@ -1,4 +1,4 @@
-package com.fukuoka.beatc.weatherforecast.models.apis;
+package com.fukuoka.beatc.weatherforecast.domain.models;
 
 /**
  * Created by ted on 2017/05/30.
@@ -10,8 +10,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fukuoka.beatc.weatherforecast.utils.Util;
-import com.fukuoka.beatc.weatherforecast.utils.Util.*;
+import com.fukuoka.beatc.weatherforecast.domain.utils.Util;
 
 public class WeatherForecast {
     public final Location location;
