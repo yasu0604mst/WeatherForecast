@@ -1,17 +1,23 @@
 package com.fukuoka.beatc.weatherforecast.presentation.presenter;
 
+import com.fukuoka.beatc.weatherforecast.domain.entity.Product;
+import com.fukuoka.beatc.weatherforecast.domain.usecase.FollowerListUseCase;
 import com.fukuoka.beatc.weatherforecast.domain.usecase.ICreateProductList;
 import com.fukuoka.beatc.weatherforecast.domain.usecase.CreateProductList;
-import com.fukuoka.beatc.weatherforecast.presentation.activity.IMainActivity;
+import com.fukuoka.beatc.weatherforecast.presentation.activity.IMainActivityViews;
 import com.fukuoka.beatc.weatherforecast.presentation.activity.MainActivity;
 import com.fukuoka.beatc.weatherforecast.domain.usecase.CreateProductList.GetProductInfoDelegate;
+import com.fukuoka.beatc.weatherforecast.domain.usecase.FollowerListUseCase.FollowerListUseCaseCallback;
+
+import java.util.Collection;
+
 /**
  * Created by ted on 2017/06/28.
  */
 
-public class MainPresenter {
+public class MainPresenter extends Presenter implements FollowerListUseCaseCallback{
     private ICreateProductList _useCase;
-    private IMainActivity _activity;
+    private IMainActivityViews _activity;
 
     public MainPresenter() {
         _useCase = new CreateProductList();
@@ -40,5 +46,28 @@ public class MainPresenter {
     public void onCreate() {
 
     }
+    @Override
+    public void initialize(){
 
+    }
+    @Override
+    public void resume(){
+
+    }
+    @Override
+    public void pause(){
+
+    }
+    @Override
+    public void destroy(){
+
+    }
+    @Override
+    public void onUserListLoaded(final Collection<Product> usersCollection){
+
+    }
+    @Override
+    public void onError(){
+
+    }
 }

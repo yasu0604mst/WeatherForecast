@@ -35,7 +35,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,IMainActivity {
+        implements NavigationView.OnNavigationItemSelectedListener,IMainActivityViews {
     private TextView textView;
     private TextView textView1;
     private TextView textView2;
