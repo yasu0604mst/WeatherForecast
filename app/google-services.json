@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "743344905896",
+    "firebase_url": "https://weatherforcast-cebec.firebaseio.com",
+    "project_id": "weatherforcast-cebec",
+    "storage_bucket": "weatherforcast-cebec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743344905896:android:6c2ec6155acc6d47",
+        "android_client_info": {
+          "package_name": "com.fukuoka.beatc.weatherforecast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743344905896-2al25tgjc64kvpat8ae915ubvv7cu89q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc4ybKr0jlV6JMN2iEZSu8CZl7t8SB7ms"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

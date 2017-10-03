@@ -1,5 +1,6 @@
 package com.fukuoka.beatc.weatherforecast.presentation.activity;
 
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.Snackbar;
@@ -17,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
-
+import android.support.v4.app.NotificationCompat;
 import android.os.Handler;
 
 import com.fukuoka.beatc.weatherforecast.R;
@@ -28,6 +29,7 @@ import com.fukuoka.beatc.weatherforecast.domain.models.WeatherApi;
 import com.fukuoka.beatc.weatherforecast.domain.models.WeatherForecast;
 import com.fukuoka.beatc.weatherforecast.domain.utils.Util;
 import com.fukuoka.beatc.weatherforecast.presentation.presenter.MainPresenter;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
 
+
+
         //ドロアのトグル
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -76,15 +80,19 @@ public class MainActivity extends AppCompatActivity
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.tab_favorites) {
                     Util.Log(Util.LogType.DEBUG, "### tab_favorites ###");
+                    Toast.makeText(getApplicationContext(), "favorites", Toast.LENGTH_LONG).show();
                 }
                 if (tabId == R.id.tab_category) {
                     Util.Log(Util.LogType.DEBUG, "### tab_category ###");
+                    Toast.makeText(getApplicationContext(), "category", Toast.LENGTH_LONG).show();
                 }
                 if (tabId == R.id.tab_add) {
-                    Util.Log(Util.LogType.DEBUG, "### tab_add ###");
+                    Util.Log(Util.LogType.DEBUG, "### add ###");
+                    Toast.makeText(getApplicationContext(), "add", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
         //ListViewの設定
         lv = (ListView) findViewById(R.id.listView1);
         MyAdapter myAdapter = new MyAdapter(MainActivity.this);
@@ -103,6 +111,7 @@ public class MainActivity extends AppCompatActivity
                         Toast.LENGTH_LONG).show();
             }
         });
+
         //リストが押された時の処理
         lv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             //リスト項目が選択された時の処理
@@ -161,6 +170,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+
+
         //MainPresenterで値の設定
         mMainPresenter = new MainPresenter();
         mMainPresenter.setActivity(this);
@@ -184,6 +196,13 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void run() {
                             Util.Log(Util.LogType.DEBUG, "### RUN() ###");
+
+                            //Push通知の購読開始
+                            FirebaseMessaging.getInstance().subscribeToTopic("mytopic");
+
+                            //購読解除
+                            FirebaseMessaging.getInstance().unsubscribeFromTopic("mytopic");
+
                             //textView.setText(data.location.area);
                             textView.setText(data.location.area + ""+ data.location.prefecture + " " + data.location.city);
                             Util.Log(Util.LogType.DEBUG, "### setText() ###");
@@ -235,6 +254,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -248,6 +269,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(getApplicationContext(),  "Option item Setting", Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -283,5 +305,25 @@ public class MainActivity extends AppCompatActivity
     public void setNameView3(String name){
         textView3 = (TextView) findViewById(R.id.tv_name3);
         textView3.setText(name);
+    }
+
+    //Notificationの実装
+    private void statusBarNitify() {
+
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("My Notification")
+                        .setContentText("Hello World!")
+                        .setTicker("notification is displayed !!");
+
+        int mNotificationId = 001;
+
+        // Gets an instance of the NotificationManager service
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        // Builds the notification and issues it.
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
     }
 }
