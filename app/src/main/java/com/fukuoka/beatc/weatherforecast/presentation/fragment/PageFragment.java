@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import com.fukuoka.beatc.weatherforecast.R;
 
@@ -49,6 +51,8 @@ public class PageFragment extends Fragment {
         // Inflate the layout for this fragment
         int page = getArguments().getInt(ARG_PARAM, 0);
         View view = inflater.inflate(R.layout.fragment_page, container, false);
+        obtainURLInfo(view, page);
+
         ((TextView)view.findViewById(R.id.textView)).setText("Page" + page);
         return view;
     }
@@ -78,5 +82,23 @@ public class PageFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+    private void obtainURLInfo(View view, int page) {
+        WebView myWebView = (WebView)view.findViewById(R.id.webView1);
+
+        //リンクをタップしたときに標準ブラウザを起動させない
+        myWebView.setWebViewClient(new WebViewClient());
+
+        //最初にgoogleのページを表示する。
+        if(page == 1) {
+            myWebView.loadUrl("http://www.google.co.jp");
+        } else if (page == 2) {
+            myWebView.loadUrl("http://www.yahoo.co.jp");
+        } else if (page == 3) {
+            myWebView.loadUrl("https://www.msn.com/ja-jp");
+        }
+
+        //jacascriptを許可する
+        myWebView.getSettings().setJavaScriptEnabled(true);
     }
 }

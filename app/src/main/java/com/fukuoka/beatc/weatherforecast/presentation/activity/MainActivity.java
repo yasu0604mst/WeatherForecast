@@ -107,8 +107,7 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ListView listView = (ListView) parent;
                 String item = (String) listView.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), item + " clicked",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), item + " clicked", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -119,14 +118,12 @@ public class MainActivity extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ListView listView = (ListView) parent;
                 String item = (String) listView.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), item + " selected",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), item + " selected", Toast.LENGTH_LONG).show();
             }
             //リスト項目がなにも選択されていない時の処理
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getApplicationContext(), "no item selected",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "no item selected", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -136,37 +133,33 @@ public class MainActivity extends AppCompatActivity
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 ListView listView = (ListView) parent;
                 String item = (String) listView.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), item + " long clicked",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), item + " long clicked", Toast.LENGTH_LONG).show();
                 return false;
             }
         });
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(getApplicationContext(),  "Item clicked",
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),  "Item clicked", Toast.LENGTH_LONG).show();
             }
         });
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),  "Item Long clicked",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),  "Item Long clicked", Toast.LENGTH_LONG).show();
                 return false;
             }
         });
         lv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),  " ItemSelected",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),  " ItemSelected", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getApplicationContext(),  "Item nothing selected",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),  "Item nothing selected", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -197,11 +190,8 @@ public class MainActivity extends AppCompatActivity
                         public void run() {
                             Util.Log(Util.LogType.DEBUG, "### RUN() ###");
 
-                            //Push通知の購読開始
-                            FirebaseMessaging.getInstance().subscribeToTopic("mytopic");
-
-                            //購読解除
-                            FirebaseMessaging.getInstance().unsubscribeFromTopic("mytopic");
+                            //Push通知の監視
+                            checkPushNotification();
 
                             //textView.setText(data.location.area);
                             textView.setText(data.location.area + ""+ data.location.prefecture + " " + data.location.city);
@@ -254,12 +244,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
-
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
+    /**
+     * オプションメニューでアイテム選択
+     * <pre>
+     * オプションメニューでアイテムが設定されたときの処理
+     * </pre>
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -267,7 +260,7 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        //オプションアイテムが選択された場合
         if (id == R.id.action_settings) {
             Toast.makeText(getApplicationContext(),  "Option item Setting", Toast.LENGTH_LONG).show();
             return true;
@@ -276,6 +269,12 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * オプションメニューの設定を行います
+     * <pre>
+     * Push通知の監視を行います
+     * </pre>
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -287,8 +286,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void FloatingActionButtonEvent(View view){
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
     }
 
     @Override
@@ -308,22 +306,31 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Notificationの実装
-    private void statusBarNitify() {
+//    private void statusBarNitify() {
+//
+//        NotificationCompat.Builder mBuilder =
+//                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+//                        .setSmallIcon(R.mipmap.ic_launcher)
+//                        .setContentTitle("My Notification")
+//                        .setContentText("Hello World!")
+//                        .setTicker("notification is displayed !!");
+//
+//        int mNotificationId = 001;
+//
+//        // Gets an instance of the NotificationManager service
+//        NotificationManager mNotifyMgr =
+//                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//
+//        // Builds the notification and issues it.
+//        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+//    }
 
-        NotificationCompat.Builder mBuilder =
-                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("My Notification")
-                        .setContentText("Hello World!")
-                        .setTicker("notification is displayed !!");
+    //Push通知の監視
+    private void checkPushNotification() {
+        //Push通知の購読開始
+        FirebaseMessaging.getInstance().subscribeToTopic("mytopic");
 
-        int mNotificationId = 001;
-
-        // Gets an instance of the NotificationManager service
-        NotificationManager mNotifyMgr =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        // Builds the notification and issues it.
-        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+        //購読解除
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("mytopic");
     }
 }
